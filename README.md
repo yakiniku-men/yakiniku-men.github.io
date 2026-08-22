@@ -2,7 +2,7 @@
 
 KOL / KOC 配合事項表 v17 的手機版單頁網站，照片已內嵌於 HTML，單一檔案即可離線瀏覽。
 
-公開網址：https://mamibuyama.github.io/yakiniku-men-brief/
+公開網址：https://yakiniku-men.github.io/
 
 - `index.html` — 產出的網頁（勿直接手改，會被 build.sh 覆蓋）
 - `build.sh` / `wrap.py` — 由 iCloud「○山城一鳴」資料夾中的成品檔重新產生 index.html
