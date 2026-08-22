@@ -7,7 +7,8 @@ s = io.open(src, encoding="utf-8").read()
 
 # 去掉可能已存在的外層標籤，永遠從片段狀態重建
 s = re.sub(r"(?is)^\s*<!doctype[^>]*>\s*", "", s)
-s = re.sub(r"(?is)</?(html|head|body)[^>]*>", "", s)
+# (?![a-zA-Z]) 避免把 <header> 當成 <head> 誤刪
+s = re.sub(r"(?is)</?(?:html|head|body)(?![a-zA-Z])[^>]*>", "", s)
 
 # 切出 head（meta / title / style）與 body
 m = re.search(r"(?is)</style>", s)
