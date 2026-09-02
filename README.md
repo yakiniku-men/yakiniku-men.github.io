@@ -8,4 +8,8 @@ KOL / KOC 配合事項表 v17 的手機版單頁網站，照片已內嵌於 HTML
 - `build.sh` / `wrap.py` — 由 iCloud「○山城一鳴」資料夾中的成品檔重新產生 index.html
 - 已設定 `noindex` 與 `robots.txt`，有連結的人可以打開，但不會被搜尋引擎收錄
 
+完整交接說明見 [HANDOVER.md](HANDOVER.md)（帳號、更新流程、照片來源、踩過的坑）。
+
 更新流程：改好 iCloud 的成品檔 → `./build.sh` → `git commit -am "更新" && git push`
+
+- `tools/extract-pptx-images.py` — 簡報出新版時，列出「投影片 → 圖片 → 位置」對照表
