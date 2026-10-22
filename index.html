@@ -418,6 +418,20 @@
 
   .shot.free img { aspect-ratio: auto; height: auto; }
 
+  /* 頁首活動橫幅 */
+  .promo {
+    display: grid; grid-template-columns: 96px 1fr; align-items: stretch;
+    width: calc(100% - 2 * var(--pad)); max-width: calc(var(--maxw) - 2 * var(--pad)); margin: 16px auto 0;
+    background: #8E1B1B; border: 1px solid #C4402A; border-radius: 4px; overflow: hidden;
+    text-decoration: none; color: #FFF4EC;
+  }
+  .promo img { width: 96px; height: 100%; min-height: 92px; object-fit: cover; }
+  .promo .pt { padding: 11px 13px 12px; }
+  .promo .pk { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: #FFD2B8; }
+  .promo b { display: block; margin-top: 3px; font-size: 16.5px; line-height: 1.45; font-weight: 800; }
+  .promo .pd { display: block; margin-top: 4px; font-size: 12.5px; color: #FFD2B8; }
+  .promo:focus-visible { outline: 2px solid var(--ember-glow); outline-offset: 2px; }
+
   .checks-h { margin: 22px 0 0; font-size: 13px; font-weight: 700; color: var(--ember); }
 </style>
 </head>
@@ -450,6 +464,15 @@
 </header>
 
 <p class="meta"><span>拍攝前請詳閱</span><span>先選你要拍的方案</span></p>
+
+<a class="promo" href="#s03">
+  <img data-k="poster" alt="">
+  <span class="pt">
+    <span class="pk">限時活動・朝富店限定</span>
+    <b>雙人同行，贈送玫瑰松阪豬</b>
+    <span class="pd">2026/10/19～12/31・可搭配任一方案拍攝 →</span>
+  </span>
+</a>
 
 <main class="wrap">
 
@@ -1024,7 +1047,7 @@ var THEMES = [
   var bar = document.getElementById('bar');
   var links = [].slice.call(document.querySelectorAll('.navrow a'));
   var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-  links.forEach(function (a) {
+  links.concat([].slice.call(document.querySelectorAll('.promo'))).forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
       var el = document.querySelector(a.getAttribute('href'));
