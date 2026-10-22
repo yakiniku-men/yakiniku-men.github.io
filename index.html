@@ -433,6 +433,19 @@
   .promo:focus-visible { outline: 2px solid var(--ember-glow); outline-offset: 2px; }
 
   .checks-h { margin: 22px 0 0; font-size: 13px; font-weight: 700; color: var(--ember); }
+
+  /* 左右滑動卡片 */
+  .swipe {
+    display: flex; gap: 12px; margin: 20px calc(-1 * var(--pad)) 0; padding: 0 var(--pad) 4px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+  }
+  .swipe::-webkit-scrollbar { display: none; }
+  .swipe > li { flex: 0 0 min(76%, 290px); scroll-snap-align: start; display: flex; flex-direction: column; }
+  .swipe > li .body { flex: 1; }
+  .swipe-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+  .swipe-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--rule); transition: background .15s ease, width .15s ease; }
+  .swipe-dots i.on { width: 16px; border-radius: 3px; background: var(--ember); }
 </style>
 </head>
 <body>
@@ -446,8 +459,7 @@
     <a href="#s04">04 一桌兩吃</a>
     <a href="#s05">05 空間</a>
     <a href="#s06">06 情境</a>
-    <a href="#s07">07 檢核表</a>
-    <a href="#s08">08 口徑</a>
+    <a href="#s07">07 口徑</a>
   </nav>
 </div>
 
@@ -480,7 +492,7 @@
     <div class="sec-head">
       <p class="sec-no">START <em>／ Choose a plan・選方案</em></p>
       <h2>選一個方案來拍</h2>
-      <p class="sec-sub">點選後，「02 方案內容」與「07 檢核表」會換成這個方案要拍的細部主題</p>
+      <p class="sec-sub">點選後，「02 方案內容」會換成這個方案要拍的細部主題</p>
     </div>
     <div class="plans" id="plans" role="radiogroup" aria-label="拍攝方案"></div>
   </section>
@@ -498,8 +510,8 @@
       </div>
       <div class="fig">
         <p class="tag">創作者可用的內容切角</p>
-        <p class="n">4<small>種</small></p>
-        <p class="d">左炒右烤／台式燒肉／家庭聚餐／日本和牛 × 熱炒鍋氣</p>
+        <p class="n">2<small>種</small></p>
+        <p class="d">左炒右烤／台式燒肉</p>
       </div>
     </div>
     <ul class="stack">
@@ -512,16 +524,6 @@
         <span class="tag">Angle 02</span>
         <h3>全台唯一台式燒肉<span class="flag">特點</span></h3>
         <p>台灣人最愛的聚餐，台式熱炒 × 燒肉</p>
-      </div></li>
-      <li class="card"><div class="body">
-        <span class="tag">Angle 03</span>
-        <h3>不用二選一的家庭聚餐</h3>
-        <p>有人顧鍋、有人顧爐，想吃什麼自己開工</p>
-      </div></li>
-      <li class="card"><div class="body">
-        <span class="tag">Angle 04</span>
-        <h3>日本和牛燒肉 &amp; 台式鍋氣</h3>
-        <p>日本官方認證的和牛與新台式熱炒同框最有記憶點</p>
       </div></li>
     </ul>
 
@@ -595,7 +597,7 @@
       <div><b>左手熱炒</b><em>Left · Wok</em></div>
       <div class="r"><b>右手燒烤</b><em>Right · Grill</em></div>
     </div>
-    <ul class="stack">
+    <ul class="swipe" aria-label="左右滑動看更多">
       <li class="card">
         <button class="shot tall" type="button" data-cap="左手熱炒・桌上炒鍋"><img data-k="wok" alt="桌上炒鍋現炒" loading="lazy"></button>
         <div class="body">
@@ -617,36 +619,6 @@
         <h3>自助吧（朝富店特色）</h3>
         <p>含水煮雞胸肉，照顧不同飲食需求</p>
       </div></li>
-    </ul>
-    <div class="note">
-      <b>P.S.</b>
-      <span>主廚已完成烹煮才上桌，上桌後是情境與保溫的效果</span>
-    </div>
-    <p class="pull">左手熱炒、右手燒烤，燒肉 MEN 把炒鍋和火爐一起搬上桌。自己顛出鍋氣的新台式快炒，配上日本官方認證的和牛燒肉，每個人都是這一桌的主廚，這是傳統燒肉聚餐沒有的畫面</p>
-
-    <h3 class="subhead go">這一桌可以是誰的場合</h3>
-    <p class="sec-sub">聚餐情境自己挑一個帶入，把「一桌兩吃」講成觀眾自己的生活</p>
-    <ul class="occ">
-      <li>
-        <b>姐妹談心</b>
-        <span>包廂與獨立座位的隱密感，話題不用怕隔壁桌聽見</span>
-      </li>
-      <li>
-        <b>離職同事慶祝</b>
-        <span>送別場合人多口味雜，一桌兩吃不用先喬菜色</span>
-      </li>
-      <li>
-        <b>下班小酌</b>
-        <span>熱炒配酒的鍋氣，在燒肉店也能有</span>
-      </li>
-      <li>
-        <b>生日聚餐</b>
-        <span>長輩顧鍋、朋友顧爐，誰都不用將就別人的菜</span>
-      </li>
-      <li>
-        <b>健身好夥伴</b>
-        <span>自助吧水煮雞胸肉隨你拿，補蛋白質不破功</span>
-      </li>
     </ul>
   </section>
 
@@ -682,7 +654,7 @@
       <b>規格</b>
       <span>兩個情境版位皆建議直式 9:16</span>
     </div>
-    <ul class="stack">
+    <ul class="swipe" aria-label="左右滑動看更多">
       <li class="card">
         <button class="shot tall" type="button" data-cap="Scene 01・聚餐互動"><img data-k="party" alt="多人同桌聚餐互動" loading="lazy"></button>
         <div class="body">
@@ -704,35 +676,13 @@
 
   <section id="s07">
     <div class="sec-head">
-      <p class="sec-no">07 <em>／ Checklist・拍攝檢核表</em></p>
-      <h2>門店主動引導，創作者確認素材已取得</h2>
-      <p class="sec-sub">上半是<b id="checkPlan">本方案</b>的細部主題，下半是每個方案都要拍的共同素材；勾選紀錄會依方案分開留在這支手機裡</p>
+      <p class="sec-no">07 <em>／ Wording・內容口徑</em></p>
+      <h2>文案調性統一，避免踩到比價與比較競品</h2>
     </div>
+
     <div class="note">
       <b>拍攝前</b>
       <span>先和門店確認這一桌的價格、肉品份量、贈送及加購條件，拍到的、講到的都要和現場一致</span>
-    </div>
-    <div class="checkbar">
-      <span id="tally">0 / 0 已完成</span>
-      <button type="button" id="reset">清除勾選</button>
-    </div>
-    <p class="checks-h">本方案</p>
-    <ul class="checks" id="listPlan"></ul>
-    <p class="checks-h">共同素材</p>
-    <ul class="checks" id="listShared">
-      <li class="must"><label><input type="checkbox" data-k="c2"><span class="box"></span><span class="txt"><i class="ref">↳ 04 一桌兩吃</i><b>左炒右烤同框（必拍）</b><span>炒鍋與火爐同框的全桌照</span></span></label></li>
-      <li><label><input type="checkbox" data-k="c3"><span class="box"></span><span class="txt"><i class="ref">↳ 04 一桌兩吃</i><b>授牌標章與烤肉畫面</b><span>牌子特寫（只拍不寫）、上爐翻面特寫</span></span></label></li>
-      <li><label><input type="checkbox" data-k="c1"><span class="box"></span><span class="txt"><i class="ref">↳ 05 環境空間</i><b>招牌門面、用餐環境</b><span>含店名字樣供辨識；座位、包廂、整體氛圍</span></span></label></li>
-      <li><label><input type="checkbox" data-k="c5"><span class="box"></span><span class="txt"><i class="ref">↳ 06 情境素材 Scene 01</i><b>聚餐互動</b><span>同桌的真實反應</span></span></label></li>
-      <li><label><input type="checkbox" data-k="c6"><span class="box"></span><span class="txt"><i class="ref">↳ 06 情境素材 Scene 02</i><b>服務過程</b><span>示範燒烤與桌邊服務</span></span></label></li>
-      <li><label><input type="checkbox" data-k="c8"><span class="box"></span><span class="txt"><i class="ref">↳ 03 限時活動・可選</i><b>玫瑰松阪豬活動</b><span>到朝富店拍攝時：玫瑰肉品特寫、雙人用餐、活動資訊</span></span></label></li>
-    </ul>
-  </section>
-
-  <section id="s08">
-    <div class="sec-head">
-      <p class="sec-no">08 <em>／ Wording・內容口徑</em></p>
-      <h2>文案調性統一，避免踩到比價與比較競品</h2>
     </div>
 
     <h3 class="subhead go">必帶品牌關鍵字</h3>
@@ -783,7 +733,7 @@
 
 <footer class="wrap">
   燒肉MEN・KOL / KOC 配合事項表 2026.10<br>
-  手機版整理・三方案・章節編號 01–08
+  手機版整理・三方案・章節編號 01–07
 </footer>
 
 <div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="放大檢視">
@@ -838,12 +788,6 @@ var THEMES = [
       { id: 'addon', name: '快炒加購', lead: '加購的石鍋熱炒讓整桌更豐富，上桌還在滾的前 30 秒最好拍',
         items: ['clam', 'squid'],
         note: ['注意', '加購品項要和套餐內容分開說明，不要講成套餐附的'] }
-    ],
-    check: [
-      ['全牛套餐', '整盤牛肉全景（必拍）', '先拍份量感，再拍油花與光澤特寫', 1],
-      ['全牛套餐', 'F1 和牛沾蛋黃', '月見紐約客沾裹蛋液的特寫'],
-      ['自助吧', '自助吧取餐', '哈根達斯、冰沙、雞胸肉等品項'],
-      ['快炒加購', '加購熱炒上桌冒煙', '塔香蛤蠣或三杯中卷，趁石鍋還在滾']
     ] },
 
   { n: 2, name: '雙人／三人餐', img: 'seafood',
@@ -860,11 +804,6 @@ var THEMES = [
         note: ['注意', '不要講成快炒和海鮮都送；也不要和「雙人同行贈玫瑰松阪豬」活動混在一起講'] },
       { id: 'buffet', name: '自助吧', lead: '套餐內含，吃到飽',
         items: ['buffet', 'breast'] }
-    ],
-    check: [
-      ['免費快炒或海鮮', '贈送的快炒或海鮮（必拍）', '辣椒炒肉拍顛鍋起鍋與拌飯；海鮮盤拍全景與干貝入雞湯', 1],
-      ['雙人／三人套餐', '聚餐情境全景（必拍）', '整桌份量感，帶到兩三個人一起分享', 1],
-      ['自助吧', '自助吧取餐', '哈根達斯、冰沙、雞胸肉等品項']
     ] },
 
   { n: 3, name: '單人 $899 套餐', img: 'buffet',
@@ -879,11 +818,6 @@ var THEMES = [
         todo: ['套餐品項照片待補', '拍攝時以現場上桌內容為準：一人份整套俯拍全景、每一種肉品特寫、夾起上爐的份量感，套餐裡的每一樣都要入鏡'] },
       { id: 'buffet', name: '自助吧', lead: '套餐內含，吃到飽；一個人吃也能把自助吧當第二道主菜',
         items: ['buffet', 'breast'] }
-    ],
-    check: [
-      ['$899 單人套餐', '一人份整套俯拍（必拍）', '整套上桌的全景，套餐每一樣都入鏡', 1],
-      ['$899 單人套餐', '份量感與肉品特寫（必拍）', '每一種肉品特寫，夾起上爐呈現份量充足', 1],
-      ['自助吧', '自助吧取餐', '哈根達斯、冰沙、雞胸肉等品項']
     ] }
 ];
 
@@ -959,20 +893,9 @@ var THEMES = [
 
     document.getElementById('sceneText').textContent = t.scene;
     document.getElementById('planKw').innerHTML = t.kw.map(function (k, i) { return '<span' + (i === 0 ? ' class="lead"' : '') + '>' + esc(k) + '</span>'; }).join('');
-    document.getElementById('checkPlan').textContent = '方案 ' + t.n + '・' + t.name;
     document.getElementById('curpill').textContent = '#' + t.n + ' ' + t.name;
 
-    document.getElementById('listPlan').innerHTML = t.check.map(function (c, i) {
-      return '<li' + (c[3] ? ' class="must"' : '') + '><label><input type="checkbox" data-k="p' + i + '"><span class="box"></span><span class="txt"><i class="ref">↳ 02 ' +
-        LETTERS[subIndex(t, c[0])] + ' ' + esc(c[0]) + '</i><b>' + esc(c[1]) + '</b><span>' + esc(c[2]) + '</span></span></label></li>';
-    }).join('');
-    loadChecks(t.n);
   }
-  function subIndex(t, name) {
-    for (var i = 0; i < t.subs.length; i++) if (t.subs[i].name === name) return i;
-    return 0;
-  }
-
   function choose(n, fromUser) {
     var t = THEMES.filter(function (x) { return x.n === n; })[0];
     if (!t) return;
@@ -997,30 +920,26 @@ var THEMES = [
     if (/^#ep\d+$/.test(location.hash)) choose(fromHash(), false);
   });
 
-  // 檢核表：每個方案分開記，共同素材共用一份
-  var tally = document.getElementById('tally');
-  var store = {};
-  function allBoxes() { return [].slice.call(document.querySelectorAll('#listPlan input, #listShared input')); }
-  function key(b) { return b.closest('#listPlan') ? 'ep' + cur + '-' + b.dataset.k : 'shared-' + b.dataset.k; }
-  function count() {
-    var bs = allBoxes();
-    tally.textContent = bs.filter(function (b) { return b.checked; }).length + ' / ' + bs.length + ' 已完成';
-  }
-  function loadChecks() {
-    try { store = JSON.parse(get(STORE + '-checks') || '{}'); } catch (e) { store = {}; }
-    allBoxes().forEach(function (b) { b.checked = !!store[key(b)]; });
-    count();
-  }
-  document.getElementById('s07').addEventListener('change', function (e) {
-    if (e.target.type !== 'checkbox') return;
-    store[key(e.target)] = e.target.checked;
-    put(STORE + '-checks', JSON.stringify(store));
-    count();
-  });
-  document.getElementById('reset').addEventListener('click', function () {
-    allBoxes().forEach(function (b) { b.checked = false; delete store[key(b)]; });
-    put(STORE + '-checks', JSON.stringify(store));
-    count();
+  // 左右滑動：下方小圓點標示目前第幾張
+  [].forEach.call(document.querySelectorAll('.swipe'), function (row) {
+    var cards = [].slice.call(row.children);
+    var dots = document.createElement('div');
+    dots.className = 'swipe-dots';
+    dots.setAttribute('aria-hidden', 'true');
+    dots.innerHTML = cards.map(function () { return '<i></i>'; }).join('');
+    row.parentNode.insertBefore(dots, row.nextSibling);
+    var ds = [].slice.call(dots.children);
+    function mark() {
+      var x = row.scrollLeft, best = 0, min = Infinity;
+      cards.forEach(function (c, i) {
+        var d = Math.abs(c.offsetLeft - row.firstElementChild.offsetLeft - x);
+        if (d < min) { min = d; best = i; }
+      });
+      if (x + row.clientWidth >= row.scrollWidth - 2) best = cards.length - 1;
+      ds.forEach(function (d, i) { d.classList.toggle('on', i === best); });
+    }
+    row.addEventListener('scroll', mark, { passive: true });
+    mark();
   });
 
   // 點圖放大
