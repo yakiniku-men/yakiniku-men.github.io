@@ -450,6 +450,7 @@
   .swipe.loose .shot img { aspect-ratio: 1 / 1; }
   .swipe.wide > li { flex-basis: min(86%, 380px); }
   .swipe.wide .shot.free img { aspect-ratio: 951 / 1400; height: auto; object-fit: contain; background: var(--char-2); }
+  #planTitle { white-space: nowrap; text-wrap: nowrap; overflow: hidden; }
 </style>
 </head>
 <body>
@@ -813,7 +814,7 @@ var THEMES = [
     ] },
 
   { n: 2, name: '雙人／三人餐', img: 'chili',
-    title: '雙人／三人餐享免費熱炒＋自助吧',
+    title: '雙人／三人餐享免費熱炒＋免費自助吧',
     angle: '兩三個人一起分享，套餐附熱炒三選一，再加自助吧',
     say: '「兩三個人一起吃，套餐就送快炒三選一，自助吧還吃到飽」',
     scene: '兩三個人分享一桌，左手顧鍋、右手顧爐的聚餐情境',
@@ -886,7 +887,9 @@ var THEMES = [
   var cur = null;
 
   function render(t) {
-    document.getElementById('planTitle').textContent = t.title;
+    var pt = document.getElementById('planTitle');
+    pt.textContent = t.title;
+    fitTitle(pt);
     var h = '<div class="plan-banner"><span class="pn">方案 ' + t.n + '・' + esc(t.name) + '</span><b>' + esc(t.angle) + '</b></div>';
     h += '<div class="say"><span class="t">這個方案要講清楚的一句話（口播範例，可用自己的話）</span><p>' + esc(t.say) + '</p></div>';
     h += '<nav class="subnav" aria-label="細部主題">' + t.subs.map(function (s, i) {
@@ -920,6 +923,14 @@ var THEMES = [
     document.getElementById('curpill').textContent = '#' + t.n + ' ' + t.name;
 
   }
+  // 方案大標題維持一行：放不下就縮小字級
+  function fitTitle(el) {
+    el.style.fontSize = '';
+    var size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > el.clientWidth && size > 14) { size -= 0.5; el.style.fontSize = size + 'px'; }
+  }
+  window.addEventListener('resize', function () { fitTitle(document.getElementById('planTitle')); });
+
   function choose(n, fromUser) {
     var t = THEMES.filter(function (x) { return x.n === n; })[0];
     if (!t) return;
